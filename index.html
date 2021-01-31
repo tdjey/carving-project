@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Carving4U</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <ul class="header_list">
+                <li class="active"><a href="#">О нас</a></li>
+                <li><a href="#">Последние новости</a></li>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="#">Калькулятор цен</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+        <div id="scrollBar"></div>
+    </header>
+    <main>
+        <section class="about">
+            <h2>О нас</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis harum consequuntur laudantium eligendi autem error quibusdam esse explicabo quaerat neque quis aliquid, quod ex aspernatur officiis. Aliquam corrupti temporibus corporis.</p>
+        </section>
+        <section class="last_news">
+            <div class="container">
+                <div id="Slider" class="slider">
+                    <div class="wrapper">
+                        <div class="slide"></div>
+                        <div class="slide"></div>
+                        <div class="slide"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="goods">
+            <div class="container">
+                <div class="product">
+                    <h3>Заголовок</h3>
+                </div>
+                <div class="product">
+                    <h3>Заголовок</h3>
+                </div>
+                <div class="product">
+                    <h3>Заголовок</h3>
+                </div>
+                <div class="product">
+                    <h3>Заголовок</h3>
+                </div>
+                <div class="product">
+                    <h3>Заголовок</h3>
+                </div>
+                <div class="product">
+                    <h3>Заголовок</h3>
+                </div>
+            </div>
+        </section>
+        <section class="calc">
+            <div class="container">
+                <div class="options">
+                </div>
+                <div class="result"></div>
+            </div>
+        </section>
+        <section class="contact"></section>
+    </main>
+    <script>
+        'use strict';
+
+        //Полоса прокрутки сайта
+        function ProgessScroll() { 
+            let scrollHeight = document.documentElement.scrollHeight;
+            let currentScroll = window.pageYOffset;
+            scrollBar.style.width = (currentScroll) / (scrollHeight - document.documentElement.clientHeight - 1) * 100 + "%";
+        }
+
+        // Объявление массивов и переменных к след функции
+        let nav_arr = document.querySelectorAll(".header_list li"),
+            sect_arr = document.querySelectorAll("section"),
+            now_active = 0;
+
+        
+        //Выделение заголовка в header
+        function lightCurrentSection() {
+            for (let i = 0; i < sect_arr.length; i++) {
+                if (sect_arr[i].getBoundingClientRect().top < 300 && sect_arr[i].getBoundingClientRect().top >= 0) {
+                    nav_arr[now_active].classList.remove("active");
+                    now_active = i;
+                    break;
+                }
+            }
+            nav_arr[now_active].classList.add("active");
+        }
+        
+        
+        //Слайдер
+        let sliderWrapper = document.querySelector(".wrapper"), slides_arr = document.querySelectorAll(".slide");
+        console.log(Slider.offsetWidth);
+        console.log(Slider.offsetWidth * slides_arr.length);
+        sliderWrapper.style.width = Slider.offsetWidth * slides_arr.length + "px";
+
+        
+        
+        //Вызов необходимых функций при прокруке страницы
+        document.addEventListener("scroll", function() { 
+            ProgessScroll();
+            lightCurrentSection();
+        });
+
+    </script>
+</body>
+
+</html>
