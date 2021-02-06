@@ -18,16 +18,16 @@ header{
     box-shadow: 0 3px 10px 5px gray;
 }
 header > .container{
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: auto;
-    justify-content: center;
+    justify-content: space-around;
 }
 ul.header_list{
     padding: 0;
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -73,7 +73,7 @@ section{
     min-height: 400px;
     margin: auto;
     margin-bottom: 100px;
-    width: 70%;
+    width: 90%;
     border-bottom: solid 2px black;
 }
 section h2{
@@ -124,6 +124,7 @@ section.calc{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: auto;
 }
 .goods .container .product{
     width: 250px;
@@ -137,11 +138,25 @@ section.calc{
 
 
 /*Классы слайдера*/
-
-.slider{
-    width: 95%;
+.last_news{
+    padding-bottom: 100px;
+}
+.last_news .container{
+    width: 90%;
     margin: auto;
-    border: 2px black solid;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.slider{
+    width: 80%;
+    transition: scroll, box-shadow 1s linear;
+    margin: auto;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+.slide-shadow{
+    box-shadow: 0px 0px 10px 10px lightgray;
 }
 .slider .wrapper{
     display: flex;
@@ -150,4 +165,90 @@ section.calc{
 .slide{
     min-height: 300px;
     width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 30px;
+}
+.slide > .text{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.slide > img{
+    width: 40%;
+}
+.slide.text-only{
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.slide.text-only > p{
+    width: 80%;
+    text-align: center;
+}
+.slide.img-only{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.slide.img-only > img{
+    width: 80%;
+}
+.pointer_left, .pointer_right{
+    position: absolute;
+    width: 30px;
+    width: 10%;
+    cursor: pointer;
+}
+.pointer_left{
+    left: 0;
+}
+.pointer_right{
+    right: 0;
+}
+
+
+/*Классы переключателя темы*/
+.theme-changer{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Monoton';
+    font-size: 30px;
+    align-items: center;
+}
+.theme-changer p{
+    margin: 0;
+}
+.theme-btn{
+    height: 20px;
+    background-color: #EFEFEF;
+    width: 40px;
+    border-radius: 100px;
+    position: relative;
+}
+.theme-btn .circle{
+    width: 50%;
+    height: 100%;
+    background-color: #F0F0F0;
+    box-sizing: border-box;
+    border: 2px #E1E1E1 solid;
+    border-radius: 100px;
+    transition: right 200ms ease;
+    position: absolute;
+    right: 49%;
+}
+.theme-btn.right-side .circle{
+    right: 0;
+}
+.theme-btn.right-side{
+    background-color: #02AE49;
+}
+.text-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
