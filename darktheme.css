@@ -1,0 +1,95 @@
+header{
+    background-color: #2D2F34;
+}
+main{
+    background-color: #373B40;
+    border: #C30F0D solid 2px;
+}
+body{
+    background-color: #26282C;
+}
+.slide-shadow{
+    box-shadow: 0px 0px 10px 10px #26282C;
+}
+section{
+    border-bottom: 2px solid white;
+}
+.calc > .container{
+    box-shadow: 0 0 6px 6px #26282C;
+}
+
+
+/*Анимация текста*/
+.red{
+    color: #EB0603;
+}
+.red_off{
+    color: #5B130E;
+}
+.white{
+    color: #F4F8F6;
+}
+.flashing_red{
+    animation: flash_red 6s infinite;
+}
+.flashing_red2{
+    animation: flash_red 4s infinite;
+}
+.flashing_white{
+    animation: flash 6s infinite;
+}
+@keyframes flash{
+    0%{
+        color: #F4F8F6;
+    }
+    52%{
+        color: #F4F8F6;
+    }
+    53%{
+        color: #757773;
+    }
+    54%{
+        color: #F4F8F6;
+    }
+    72%{
+        color: #F4F8F6;
+    }
+    73%{
+        color: #757773;
+    }
+    74%{
+        color: #F4F8F6;
+    }
+    75%{
+        color: #757773;
+    }
+    76%{
+        color: #F4F8F6;
+    }
+    100%{
+        color: #F4F8F6;
+    }
+}
+@keyframes flash_red{
+    0%{
+        color: #5B130E;
+    }
+    49%{
+        color: #5B130E;
+    }
+    50%{
+        color: #EB0603;
+    }
+    51%{
+        color: #5B130E;
+    }
+    58%{
+        color: #5B130E;
+    }
+    59%{
+        color: #EB0603;
+    }
+    100%{
+        color: #EB0603;
+    }
+}
