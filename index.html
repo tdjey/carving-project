@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="" id="darkTheme">
 </head>
 
 <body>
@@ -19,6 +22,20 @@
                 <li><a href="#">Калькулятор цен</a></li>
                 <li><a href="#">Контакты</a></li>
             </ul>
+            <div class="theme-changer">
+                <div class="theme-btn" id="themeBtn">
+                    <div class="circle"></div>
+                </div>
+                <div class="text-container">
+                    <p class="white">Go</p>
+                    <p class="flashing_white">o</p>
+                    <p class="white">d</p>
+                    <p class="red">n</p>
+                    <p class="flashing_red">i</p>
+                    <p class="red">gh</p>
+                    <p class="flashing_red2">t</p>
+                </div>
+            </div>
         </div>
         <div id="scrollBar"></div>
     </header>
@@ -29,11 +46,23 @@
         </section>
         <section class="last_news">
             <div class="container">
-                <div id="Slider" class="slider">
+                <img src="images/slider/pointer_left.png" class="pointer_left" id="leftBtn">
+                <img src="images/slider/pointer_right.png" class="pointer_right" id="rightBtn">
+                <div id="Slider" class="slider slide-shadow">
                     <div class="wrapper">
-                        <div class="slide"></div>
-                        <div class="slide"></div>
-                        <div class="slide"></div>
+                        <div class="slide"><img src="images/slider/slide1.jpg">
+                            <div class="text">
+                                <h3>Текст новостей</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid id, quisquam doloribus neque ab nesciunt illum. Nostrum esse, alias quos illum numquam eaque, repellendus officia perspiciatis, veritatis odit in non.</p>
+                            </div>
+                        </div>
+                        <div class="slide text-only">
+                            <h3>Текст новостей</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quibusdam nesciunt laboriosam aperiam ipsum quisquam deserunt nisi numquam, temporibus illo facilis obcaecati voluptatibus atque explicabo minus rem expedita ex placeat.</p>
+                        </div>
+                        <div class="slide img-only">
+                            <h3>Текст новостей</h3><img src="images/slider/slide3.jpg">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,7 +102,7 @@
         'use strict';
 
         //Полоса прокрутки сайта
-        function ProgessScroll() { 
+        function ProgessScroll() {
             let scrollHeight = document.documentElement.scrollHeight;
             let currentScroll = window.pageYOffset;
             scrollBar.style.width = (currentScroll) / (scrollHeight - document.documentElement.clientHeight - 1) * 100 + "%";
@@ -84,7 +113,7 @@
             sect_arr = document.querySelectorAll("section"),
             now_active = 0;
 
-        
+
         //Выделение заголовка в header
         function lightCurrentSection() {
             for (let i = 0; i < sect_arr.length; i++) {
@@ -96,18 +125,63 @@
             }
             nav_arr[now_active].classList.add("active");
         }
-        
-        
+
+
         //Слайдер
-        let sliderWrapper = document.querySelector(".wrapper"), slides_arr = document.querySelectorAll(".slide");
+        let sliderWrapper = document.querySelector(".wrapper"),
+            slides_arr = document.querySelectorAll(".slide");
         console.log(Slider.offsetWidth);
         console.log(Slider.offsetWidth * slides_arr.length);
         sliderWrapper.style.width = Slider.offsetWidth * slides_arr.length + "px";
+        let slideNumber = 0;
 
-        
-        
+        function leftSlide() {
+            slideNumber -= 1;
+            if (slideNumber == Math.max(0, slideNumber)) {
+                showNext();
+            }
+            slideNumber = Math.max(0, slideNumber);
+        }
+
+        function rightSlide() {
+            slideNumber += 1;
+            if (slideNumber == Math.min(slideNumber, slides_arr.length - 1)) {
+                showNext();
+            }
+            slideNumber = Math.min(slideNumber, slides_arr.length - 1);
+        }
+
+        function showNext() {
+            leftBtn.removeEventListener("click", leftSlide);
+            rightBtn.removeEventListener("click", rightSlide);
+            Slider.classList.remove("slide-shadow");
+            console.log(slideNumber);
+            setTimeout(function() {
+                Slider.scrollLeft = Number(document.querySelector(".slide").offsetWidth) * (slideNumber);
+                Slider.classList.add("slide-shadow");
+                leftBtn.addEventListener("click", leftSlide);
+                rightBtn.addEventListener("click", rightSlide);
+            }, 1200);
+        }
+        leftBtn.addEventListener("click", leftSlide);
+        rightBtn.addEventListener("click", rightSlide);
+
+
+        //Смена цветовой темы
+        let currentTheme = false; //true-активна темная тема
+        themeBtn.addEventListener("click", function() {
+            themeBtn.classList.toggle("right-side");
+            if (currentTheme) {
+                currentTheme = false;
+                darkTheme.setAttribute("href", "");
+            } else {
+                currentTheme = true;
+                darkTheme.setAttribute("href", "darktheme.css");
+            }
+        })
+
         //Вызов необходимых функций при прокруке страницы
-        document.addEventListener("scroll", function() { 
+        document.addEventListener("scroll", function() {
             ProgessScroll();
             lightCurrentSection();
         });
