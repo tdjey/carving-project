@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="" id="darkTheme">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
 </head>
 
 <body>
@@ -51,15 +51,25 @@
                 <img src="images/slider/pointer_right.png" class="pointer_right" id="rightBtn">
                 <div id="Slider" class="slider slide-shadow">
                     <div class="wrapper">
-                        <div class="slide"><img src="images/slider/slide1.jpg">
+                            <!--                           Есть три типа слайдов: text - , slide text-only, slide img-only-->
+<!--
                             <div class="text">
                                 <h3>Текст новостей</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid id, quisquam doloribus neque ab nesciunt illum. Nostrum esse, alias quos illum numquam eaque, repellendus officia perspiciatis, veritatis odit in non.</p>
                             </div>
+-->
+<!--
                         </div>
                         <div class="slide text-only">
                             <h3>Текст новостей</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut quibusdam nesciunt laboriosam aperiam ipsum quisquam deserunt nisi numquam, temporibus illo facilis obcaecati voluptatibus atque explicabo minus rem expedita ex placeat.</p>
+                        </div>
+-->
+                        <div class="slide img-only">
+                            <h3>Текст новостей</h3><img src="images/slider/slide3.jpg">
+                        </div>
+                        <div class="slide img-only">
+                            <h3>Текст новостей</h3><img src="images/slider/slide3.jpg">
                         </div>
                         <div class="slide img-only">
                             <h3>Текст новостей</h3><img src="images/slider/slide3.jpg">
@@ -93,6 +103,18 @@
         <section class="calc">
             <div class="container">
                 <div class="options">
+                    <div class="carving-type">
+                        <form>
+                            <label><input type="checkbox">Фрезерная</label>
+                            <label><input type="checkbox">Лазерная</label>
+                        </form>
+                    </div>
+                    <div class="material">
+                        <form class="testing">
+                            <label><input type="checkbox"></label>
+                            <label><input type="checkbox"></label>
+                        </form>
+                    </div>
                 </div>
                 <div class="result"></div>
             </div>
@@ -180,6 +202,18 @@
                 darkTheme.setAttribute("href", "darktheme.css");
             }
         })
+
+        //Калькулятор
+        let typeForm = document.querySelector(".carving-type"),
+            inputs = document.querySelectorAll(".carving-type input");
+        typeForm.addEventListener("click", function() {
+            for (let i = 0; i < inputs.length; i++) {
+                console.log(inputs[i].classList.length);
+                if (inputs[i].classList.contains("checked")) {
+                    console.log(1);
+                }
+            }
+        });
 
         //Вызов необходимых функций при прокруке страницы
         document.addEventListener("scroll", function() {
