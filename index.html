@@ -43,7 +43,7 @@
     <main>
         <section class="about">
             <h2>О нас</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis harum consequuntur laudantium eligendi autem error quibusdam esse explicabo quaerat neque quis aliquid, quod ex aspernatur officiis. Aliquam corrupti temporibus corporis.</p>
+            <p>Carving4U - Это <b>качественные изделия</b> из фанеры, а также точная лазерная и фрезерная резка по дереву почти любой сложности.</p>
         </section>
         <section class="last_news">
             <div class="container">
@@ -51,14 +51,14 @@
                 <img src="images/slider/pointer_right.png" class="pointer_right" id="rightBtn">
                 <div id="Slider" class="slider slide-shadow">
                     <div class="wrapper">
-                            <!--                           Есть три типа слайдов: text - , slide text-only, slide img-only-->
-<!--
+                        <!--                           Есть три типа слайдов: text - , slide text-only, slide img-only-->
+                        <!--
                             <div class="text">
                                 <h3>Текст новостей</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid id, quisquam doloribus neque ab nesciunt illum. Nostrum esse, alias quos illum numquam eaque, repellendus officia perspiciatis, veritatis odit in non.</p>
                             </div>
 -->
-<!--
+                        <!--
                         </div>
                         <div class="slide text-only">
                             <h3>Текст новостей</h3>
@@ -66,13 +66,13 @@
                         </div>
 -->
                         <div class="slide img-only">
-                            <h3>Текст новостей</h3><img src="images/slider/slide3.jpg">
+                            <img src="images/slider/slide1.jpg">
                         </div>
                         <div class="slide img-only">
-                            <h3>Текст новостей</h3><img src="images/slider/slide3.jpg">
+                            <img src="images/slider/slide2.jpg">
                         </div>
                         <div class="slide img-only">
-                            <h3>Текст новостей</h3><img src="images/slider/slide3.jpg">
+                            <img src="images/slider/slide3.jpg">
                         </div>
                     </div>
                 </div>
@@ -81,22 +81,16 @@
         <section class="goods">
             <div class="container">
                 <div class="product">
-                    <h3>Заголовок</h3>
+                    <h3>Качественные изделия из фанеры</h3>
+                    <img src="images/goods/example1.jpg">
                 </div>
                 <div class="product">
-                    <h3>Заголовок</h3>
+                    <h3>Лазерная резка</h3>
+                    <img src="images/goods/example3.jpg">
                 </div>
                 <div class="product">
-                    <h3>Заголовок</h3>
-                </div>
-                <div class="product">
-                    <h3>Заголовок</h3>
-                </div>
-                <div class="product">
-                    <h3>Заголовок</h3>
-                </div>
-                <div class="product">
-                    <h3>Заголовок</h3>
+                    <h3>Резка фрезой</h3>
+                    <img src="images/goods/example4.jpg">
                 </div>
             </div>
         </section>
@@ -104,124 +98,33 @@
             <div class="container">
                 <div class="options">
                     <div class="carving-type">
-                        <form>
-                            <label><input type="checkbox">Фрезерная</label>
-                            <label><input type="checkbox">Лазерная</label>
-                        </form>
+                        Тип резки
+                        <label><input type="radio" name="carvingType" id="FrezType">Фрезерный</label>
+                        <label><input type="radio" name="carvingType" id="LazerType">Лазерный</label>
                     </div>
                     <div class="material">
-                        <form class="testing">
-                            <label><input type="checkbox"></label>
-                            <label><input type="checkbox"></label>
-                        </form>
+                       Материал
+                        <select id="materialList">
+                            <option>Пожалуйста, выберите тип резки</option>
+                        </select>
                     </div>
+                    <div class="depth">
+                       Толщина
+                        <select id="depthList">
+                            <option>Пожалуйста, выберите материал</option>
+                        </select>
+                    </div>
+                    <input id="place" type="number" placeholder="Метров пог.">
+                    <button id="calcBtn">Рассчитать</button>
                 </div>
-                <div class="result"></div>
+                <div class="result">
+                    <p id="calcResult"></p>
+                </div>
             </div>
         </section>
-        <section class="contact"></section>
+        <section class="contact"><p>Контактный номер: 88005553535, почта: carving4U.mail.ru, telegram: @carving4U</p></section>
     </main>
-    <script>
-        'use strict';
-
-        //Полоса прокрутки сайта
-        function ProgessScroll() {
-            let scrollHeight = document.documentElement.scrollHeight;
-            let currentScroll = window.pageYOffset;
-            scrollBar.style.width = (currentScroll) / (scrollHeight - document.documentElement.clientHeight - 1) * 100 + "%";
-        }
-
-        // Объявление массивов и переменных к след функции
-        let nav_arr = document.querySelectorAll(".header_list li"),
-            sect_arr = document.querySelectorAll("section"),
-            now_active = 0;
-
-
-        //Выделение заголовка в header
-        function lightCurrentSection() {
-            for (let i = 0; i < sect_arr.length; i++) {
-                if (sect_arr[i].getBoundingClientRect().top < 300 && sect_arr[i].getBoundingClientRect().top >= 0) {
-                    nav_arr[now_active].classList.remove("active");
-                    now_active = i;
-                    break;
-                }
-            }
-            nav_arr[now_active].classList.add("active");
-        }
-
-
-        //Слайдер
-        let sliderWrapper = document.querySelector(".wrapper"),
-            slides_arr = document.querySelectorAll(".slide");
-        console.log(Slider.offsetWidth);
-        console.log(Slider.offsetWidth * slides_arr.length);
-        sliderWrapper.style.width = Slider.offsetWidth * slides_arr.length + "px";
-        let slideNumber = 0;
-
-        function leftSlide() {
-            slideNumber -= 1;
-            if (slideNumber == Math.max(0, slideNumber)) {
-                showNext();
-            }
-            slideNumber = Math.max(0, slideNumber);
-        }
-
-        function rightSlide() {
-            slideNumber += 1;
-            if (slideNumber == Math.min(slideNumber, slides_arr.length - 1)) {
-                showNext();
-            }
-            slideNumber = Math.min(slideNumber, slides_arr.length - 1);
-        }
-
-        function showNext() {
-            leftBtn.removeEventListener("click", leftSlide);
-            rightBtn.removeEventListener("click", rightSlide);
-            Slider.classList.remove("slide-shadow");
-            console.log(slideNumber);
-            setTimeout(function() {
-                Slider.scrollLeft = Number(document.querySelector(".slide").offsetWidth) * (slideNumber);
-                Slider.classList.add("slide-shadow");
-                leftBtn.addEventListener("click", leftSlide);
-                rightBtn.addEventListener("click", rightSlide);
-            }, 1200);
-        }
-        leftBtn.addEventListener("click", leftSlide);
-        rightBtn.addEventListener("click", rightSlide);
-
-
-        //Смена цветовой темы
-        let currentTheme = false; //true-активна темная тема
-        themeBtn.addEventListener("click", function() {
-            themeBtn.classList.toggle("right-side");
-            if (currentTheme) {
-                currentTheme = false;
-                darkTheme.setAttribute("href", "");
-            } else {
-                currentTheme = true;
-                darkTheme.setAttribute("href", "darktheme.css");
-            }
-        })
-
-        //Калькулятор
-        let typeForm = document.querySelector(".carving-type"),
-            inputs = document.querySelectorAll(".carving-type input");
-        typeForm.addEventListener("click", function() {
-            for (let i = 0; i < inputs.length; i++) {
-                console.log(inputs[i].classList.length);
-                if (inputs[i].classList.contains("checked")) {
-                    console.log(1);
-                }
-            }
-        });
-
-        //Вызов необходимых функций при прокруке страницы
-        document.addEventListener("scroll", function() {
-            ProgessScroll();
-            lightCurrentSection();
-        });
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

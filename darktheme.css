@@ -18,7 +18,12 @@ section{
     box-shadow: 0 0 6px 6px #26282C;
 }
 
-
+p{
+    color: white;
+}
+h1, h2, h3, h4, h5, a, input, div{
+    color: white !important;
+}
 /*Анимация текста*/
 .red{
     color: #EB0603;

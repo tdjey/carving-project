@@ -1,7 +1,12 @@
 body{
     margin: 0;
     width: 100vw;
-    background-color: #EDEEF0;
+/*    background-color: #EDEEF0;*/
+    background-image: url(images/backimage3.jpg);
+    background-size: 400px;
+/*    background-size: contain;*/
+/*    backdrop-filter: blur(3px);*/
+    background-repeat: repeat;
     overflow-x: hidden;
     padding-top: 150px;
     
@@ -70,11 +75,12 @@ main{
     font-family: 'Hachi Maru Pop', cursive;
 }
 section{
-    min-height: 400px;
+/*    min-height: 400px;*/
     margin: auto;
     margin-bottom: 100px;
     width: 90%;
     border-bottom: solid 2px black;
+    padding-bottom: 80px;
 }
 section h2{
     text-align: center;
@@ -82,7 +88,7 @@ section h2{
     font-weight: 100;
 }
 li.active a{
-    color: red;
+    color: red !important;
 }
 header ul li a{
     color: black;
@@ -103,11 +109,11 @@ section.about{
 
 /*Классы калькулятора*/
 section.calc{
-    height: 400px;
 }
 .calc > .container{
     width: 100%;
-    height: 80%;
+    padding: 20px;
+    box-sizing: border-box;
     box-shadow: 0 0 6px 6px lightgray;
     display: flex;
     align-items: center;
@@ -117,23 +123,44 @@ section.calc{
     width: 65%;
     border-right: 2px solid black;
 }
+.carving-type input:checked{
+    background-color: black;
+}
+
+.testing{
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+}
+.testing.active{
+    flex-direction: column;
+}
+.result{
+    margin: auto;
+}
 
 
 /*Классы товаров*/
+
 .goods .container{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: auto;
+    align-items: flex-start;
 }
 .goods .container .product{
     width: 250px;
-    height: 100px;
     border: 2px solid grey;
     margin-bottom: 10px;
+    margin: auto;
 }
 .product h3{
     text-align: center;
+}
+.product img{
+    width: 100%;
+    
 }
 
 
@@ -168,7 +195,6 @@ section.calc{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-bottom: 30px;
 }
 .slide > .text{
     width: 40%;
@@ -190,12 +216,13 @@ section.calc{
     text-align: center;
 }
 .slide.img-only{
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 .slide.img-only > img{
-    width: 80%;
+    width: 90%;
 }
 .pointer_left, .pointer_right{
     position: absolute;
@@ -267,17 +294,3 @@ section.calc{
 */
 
 
-
-/*Классы калькулятора*/
-.carving-type input:checked{
-    background-color: black;
-}
-
-.testing{
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: row;
-}
-.testing.active{
-    flex-direction: column;
-}
